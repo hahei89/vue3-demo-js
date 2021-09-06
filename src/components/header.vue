@@ -27,7 +27,7 @@
           </el-col>
           <!-- 下拉菜单 -->
           <el-col class="dropdown-menu" style="text-align: center;" :span="8">
-            <el-dropdown trigger="click">
+            <el-dropdown trigger="click" @command="handleDropdownCommand">
               <span class="el-dropdown-link">
                 下拉菜单<i class="el-icon-caret-bottom el-icon--right"></i>
               </span>
@@ -36,8 +36,8 @@
                   <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
                     <el-dropdown-item>仿照的项目仓库</el-dropdown-item>
                   </a>
-                  <el-dropdown-item>个人中心</el-dropdown-item>
-                  <el-dropdown-item divided>退出登录</el-dropdown-item>
+                  <el-dropdown-item command="user">个人中心</el-dropdown-item>
+                  <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -51,7 +51,7 @@
 <script>  
   import { onMounted, computed } from 'vue'
   import { useStore } from 'vuex'
-
+  import { useRouter } from 'vue-router'
   function useCollapse () {
     const store = useStore()
 
@@ -76,11 +76,23 @@
     setup (props) {
       const username = 'litianhua'
       const message = 2
+      const router = useRouter()
 
+      // 折叠
       const collapse = useCollapse()
-      
+
+      // 下拉框命令
+      const handleDropdownCommand = (command) => {
+        if (command === 'loginout') {
+          localStorage.removeItem('ms_username')
+          router.push('/login')
+        } else if (command === 'user') {
+          router.push('/user')
+        }
+      }
       return {
-        ...collapse
+        ...collapse,
+        handleDropdownCommand
       }
     }
   }
