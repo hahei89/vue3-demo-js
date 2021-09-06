@@ -8,7 +8,7 @@
         </el-icon>
       </el-col>
       <el-col class="logo" :span="2">后台管理系统</el-col>
-      <el-col :span="6" :offset="15">
+      <el-col :span="4" :offset="17">
         <el-row justify="center" align="middle" style="height: 70px;" :gutter="8">
           <el-col class="btn-cell" :span="2">
             <el-tooltip content="消息中心">
@@ -18,10 +18,10 @@
             </el-tooltip>
             <span class="btn-bell-badge"></span>
           </el-col>
-          <el-col style="text-align: center;" :span="11">
-            用户头像
+          <el-col class="user-avator" style="text-align: center;" :span="4">
+            <img src="../assets/img/img.jpg" alt="用户头像">
           </el-col>
-          <el-col style="text-align: center;" :span="11">
+          <el-col style="text-align: center;" :span="18">
             用户名下拉菜单
           </el-col>
         </el-row>
@@ -56,12 +56,15 @@
       text-align: left;
       line-height: 70px;
     }
+    .user-avator,
+    .btn-cell {
+      text-align: center;
+      cursor: pointer;
+    }
     .btn-cell {
       position: relative;
-      text-align: center;
       width: 30px;
       height: 30px;
-      cursor: pointer;
       border-radius: 50%;
       .el-icon-bell {
         color: #fff;
@@ -75,6 +78,19 @@
         border-radius: 4px;
         background: #f56c6c;
         color: #fff;
+      }
+    }
+    .user-avator {
+      padding-left: 8px !important;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
       }
     }
   }
