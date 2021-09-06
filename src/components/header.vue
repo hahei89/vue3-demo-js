@@ -2,9 +2,9 @@
   <el-header class="header">
     <el-row :gutter="8">
       <el-col :span="1">
-        <el-icon class="collapse-btn" color="#409EFC">
-          <i class="el-icon-s-fold"></i>
-          <!-- <i class="el-icon-s-unfold"></i> -->
+        <el-icon @click="setCollapse" class="collapse-btn" color="#409EFC">
+          <i v-if="collapse" class="el-icon-s-fold"></i>
+          <i v-else class="el-icon-s-unfold"></i>
         </el-icon>
       </el-col>
       <el-col class="logo" :span="2">后台管理系统</el-col>
@@ -36,7 +36,7 @@
                   <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
                     <el-dropdown-item>仿照的项目仓库</el-dropdown-item>
                   </a>
-                  <el-dropdown-item >个人中心</el-dropdown-item>
+                  <el-dropdown-item>个人中心</el-dropdown-item>
                   <el-dropdown-item divided>退出登录</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
@@ -49,8 +49,39 @@
 </template>
 
 <script>  
+  import { onMounted, computed } from 'vue'
+  import { useStore } from 'vuex'
+
+  function useCollapse () {
+    const store = useStore()
+
+    const collapse = computed(() => store.state.collapse)
+    const setCollapse = () => {
+      store.commit('handleCollapse', !collapse.value)
+    }
+
+    onMounted(() => {
+      if (document.body.clientWidth < 1500) {
+        setCollapse()
+      }
+    })
+
+    return {
+      collapse,
+      setCollapse
+    }
+  }
+
   export default {
-    components: {
+    setup (props) {
+      const username = 'litianhua'
+      const message = 2
+
+      const collapse = useCollapse()
+      
+      return {
+        ...collapse
+      }
     }
   }
 </script>
