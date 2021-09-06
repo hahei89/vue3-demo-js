@@ -5,7 +5,17 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '/tabs',
+        name: 'tabs',
+        meta: {
+          title: '标签页'
+        },
+        component: () => import ( /* webpackChunkName: "tabs" */ "../pages/tabs/index.vue")
+      }
+    ]
   }
 ]
 
