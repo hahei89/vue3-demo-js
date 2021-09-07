@@ -1,5 +1,5 @@
 <template>
-  <el-header class="header">
+  <div class="header">
     <el-row :gutter="8">
       <el-col :span="1">
         <el-icon @click="setCollapse" class="collapse-btn" color="#409EFC">
@@ -45,7 +45,7 @@
         </el-row>
       </el-col>
     </el-row>
-  </el-header>
+  </div>
 </template>
 
 <script>  
@@ -99,23 +99,23 @@
 </script>
 
 <style lang="less" scoped>
+  @height: 60px;
   .header {
-    position: relative;
     box-sizing: border-box;
     width: 100%;
-    height: 70px;
+    height: @height;
     font-size: 22px;
     color: #fff;
     .collapse-btn {
       padding: 0 21px;
       cursor: pointer;
-      line-height: 70px;
-      height: 70px;
+      line-height: @height;
+      height: @height;
       font-size: 22px;
     }
     .logo {
       text-align: left;
-      line-height: 70px;
+      line-height: @height;
     }
     .user-avator,
     .btn-cell,
@@ -144,7 +144,7 @@
     }
     .user-avator {
       padding-left: 8px !important;
-      height: 70px;
+      height: @height;
       display: flex;
       align-items: center;
       justify-content: center;
