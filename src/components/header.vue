@@ -7,8 +7,8 @@
           <i v-else class="el-icon-s-unfold"></i>
         </el-icon>
       </el-col>
-      <el-col class="logo" :span="2">后台管理系统</el-col>
-      <el-col :span="4" :offset="17">
+      <el-col class="logo" :span="3">后台管理系统</el-col>
+      <el-col :span="4" :offset="16">
         <el-row justify="center" align="middle" style="height: 70px;" :gutter="8">
           <!-- 占位 -->
           <el-col :span="4"></el-col>
@@ -101,6 +101,7 @@
 <style lang="less" scoped>
   @height: 60px;
   .header {
+    overflow: hidden;
     box-sizing: border-box;
     width: 100%;
     height: @height;
