@@ -28,11 +28,11 @@
     },
     setup (props) {
       const tags = [
-        { type: '', label: '标签一' },
-        { type: 'success', label: '标签二' },
-        { type: 'info', label: '标签三' },
-        { type: 'danger', label: '标签四' },
-        { type: 'warning', label: '标签五' },
+        { type: '', label: '标签一', path: '1' },
+        { type: 'success', label: '标签二', path: '2' },
+        { type: 'info', label: '标签三', path: '3' },
+        { type: 'danger', label: '标签四', path: '4' },
+        { type: 'warning', label: '标签五', path: '5' },
       ]
 
       const store = useStore()
