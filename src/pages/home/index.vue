@@ -4,7 +4,9 @@
       <page-header />
     </el-header>
     <el-container>
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="200px">
+        <page-side-bar />
+      </el-aside>
       <el-main>Main</el-main>
     </el-container>
   </el-container>
@@ -12,16 +14,17 @@
 
 <script>
   import PageHeader from '@/components/header.vue'
-
+  import PageSideBar from '@/components/side-bar.vue'
   export default {
     components: {
-      PageHeader
+      PageHeader,
+      PageSideBar
     }
   }
 </script>
 
 <style lang="less" scoped>
-  #home {
-    // color: red;
+  .el-aside {
+   
   }
 </style>
