@@ -7,7 +7,7 @@
 </script>
 
 <style lang="less">
-@import './assets/css/main.css';
+@import './assets/css/main.less';
 @import './assets/css/color-dark.css';
 
 </style>
