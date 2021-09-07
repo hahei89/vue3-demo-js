@@ -1,23 +1,25 @@
 <template>
   <div class="tag-group">
     <el-tag
-      v-for="tag in tags"
-      :key="tag.label"
-      :type="tag.type"
+      v-for="tag in tagsList"
+      :key="tag.path"
       :effect="activeTag.path === tag.path ? 'dark' : 'light'"
       closable
       @click="handleClick(tag)"
       @close="handleClose(tag)">
-      {{ tag.label }}
+      {{ tag.title }}
     </el-tag>
   </div>
 </template>
 
 <script>
   import { computed, reactive, ref } from 'vue'
+  import { useStore } from 'vuex'
+
   export default {
-    props: ['tags'],
     setup () {
+      const store = useStore()
+      const tagsList = computed(() => store.state.tagsList)
       const activeTag = reactive({
         path: ''
       })
@@ -31,7 +33,8 @@
       return {
         activeTag,
         handleClick,
-        handleClose
+        handleClose,
+        tagsList
       }
     }
   }
