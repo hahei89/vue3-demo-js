@@ -4,9 +4,21 @@ import Home from '../pages/home/index.vue'
 const routes = [
   {
     path: '/',
+    redirect: '/dashboard'
+  },
+  {
+    path: '/',
     name: 'Home',
     component: Home,
     children: [
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        meta: {
+          title: '系统首页'
+        },
+        component: () => import ( /* webpackChunkName: "tabs" */ "../pages/dashboard/index.vue")
+      },
       {
         path: '/tabs',
         name: 'tabs',

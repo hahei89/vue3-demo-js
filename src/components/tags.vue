@@ -20,6 +20,7 @@
   export default {
     setup (props, context) {
       const route = useRoute()
+      const router = useRouter()
       const store = useStore()
       const tagsList = computed(() => store.state.tagsList)
 
@@ -28,7 +29,7 @@
       }
 
       const handleClick = (tag) => {
-        if (router.path !== tag.path) {
+        if (route.path !== tag.path) {
           router.push({ path: tag.path })
         }
       }
@@ -39,7 +40,6 @@
         router.push('/')
       }
       return {
-        route,
         handleClick,
         handleClose,
         tagsList,
