@@ -3,8 +3,8 @@
     <el-tag
       v-for="tag in tagsList"
       :key="tag.path"
-      :effect="activeTag.path === tag.path ? 'dark' : 'light'"
-      closable
+      :effect="isActiveTag(tag) ? 'dark' : 'light'"
+      :closable="tag.path !== '/'"
       @click="handleClick(tag)"
       @close="handleClose(tag)">
       {{ tag.title }}
@@ -13,28 +13,37 @@
 </template>
 
 <script>
-  import { computed, reactive, ref } from 'vue'
+  import { computed,  nextTick } from 'vue'
   import { useStore } from 'vuex'
+  import { useRoute, useRouter } from 'vue-router'
 
   export default {
-    setup () {
+    setup (props, context) {
+      const route = useRoute()
       const store = useStore()
       const tagsList = computed(() => store.state.tagsList)
-      const activeTag = reactive({
-        path: ''
-      })
+
+      const isActiveTag = (tag) => {
+        return route.path === tag.path
+      }
 
       const handleClick = (tag) => {
-        activeTag.path = tag.path
+        if (router.path !== tag.path) {
+          router.push({ path: tag.path })
+        }
       }
       const handleClose = (tag) => {
-        console.log('close')
+        // 1. 从tagList移除
+        store.commit('removeTag', tag)
+        // 2. 导航到首页
+        router.push('/')
       }
       return {
-        activeTag,
+        route,
         handleClick,
         handleClose,
-        tagsList
+        tagsList,
+        isActiveTag
       }
     }
   }
